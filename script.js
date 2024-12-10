@@ -1,19 +1,15 @@
-const url = 'https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=Seattle';
+const url = 'https://api.weatherstack.com/current?access_key=ab226d3f1c3099a57d27df578e4b7a07&query=Bhubaneswar';
 const options = {
-    method: 'GET',
-    headers: {
-        'x-rapidapi-key': '0bad4b3cb6mshf9e4784bf44ea17p195617jsn444557cc927d',
-        'x-rapidapi-host': 'weather-by-api-ninjas.p.rapidapi.com'
-    }
+    method: 'GET'
 };
 
 async function fetchWeather() {
     try {
         const response = await fetch(url, options);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        const result = await response.json(); // Use .json() to parse the response as JSON
+        const result = await response.text();
         console.log(result);
     } catch (error) {
         console.error('Error fetching weather data:', error);
